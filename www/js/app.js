@@ -1,4 +1,4 @@
-ons.ready(function() {
+var onDeviceReady = function() {
   // Firebaseの初期化
   var config = {
     apiKey: "API_KEY",
@@ -20,20 +20,18 @@ ons.ready(function() {
 	  
 	  // テンプレート
 	  template: `
-	  <v-ons-page>
-	    <v-ons-toolbar>
-	      <div class="center"> Firebaseストレージ </div>
-	    </v-ons-toolbar>
+	  <div>
+      <div class="center"> Firebaseストレージ </div>
 	    <section style="margin: 10px;">
-	    	<ons-input type="file" name="photo" @change="fileChange" accept="image/*" />
-	    	<ons-button @click="upload">アップロード</ons-button>
+	    	<input type="file" name="photo" @change="fileChange" accept="image/*" />
+	    	<button @click="upload">アップロード</button>
 	    	<div v-if="photo_url">
 	    		<div class="center">
 		    		<img :src="photo_url" width="80%" />
 		    	</div>
 	    	</div>
 	    </section>
-	  </v-ons-page>`,
+	  </div>`,
 	  // イベント処理
 	  methods: {
 	  	// ファイルを指定した時の処理
@@ -60,4 +58,6 @@ ons.ready(function() {
 	  	}
 	  }
 	});
-});
+};
+
+document.addEventListener(window.cordova ?"deviceready" : "DOMContentLoaded", onDeviceReady, false);
